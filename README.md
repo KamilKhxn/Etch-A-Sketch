@@ -1,1 +1,1 @@
-Etch-A-Sketch application
+Etch-A-Sketch application 
