@@ -1,1 +1,1 @@
-Etch-A-Sketch application made with JavaScript, CSS and html. Live demonstrtion: https://kamilkhxn.github.io/Etch-A-Sketch/
+Etch-A-Sketch application made with JavaScript, CSS and html. Live demo: https://kamilkhxn.github.io/Etch-A-Sketch/
