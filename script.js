@@ -1,127 +1,47 @@
-const blackBtn = document.querySelector('#blackButton');
-const rainbowBtn = document.querySelector('#rainbowButton');
-const eraserBtn = document.querySelector('#eraserButton');
-const clearBtn = document.querySelector('#clearButton');
-const resizeBtn = document.querySelector('#resizeButton');
+const blackBtn = document.querySelector('#black');
+const rainbowBtn = document.querySelector('#rainbow');
+const eraserBtn = document.querySelector('#eraser');
+const clearBtn = document.querySelector('#clear');
+const resizeBtn = document.querySelector('#resize');
 const grid = document.querySelector('.grid');
 const buttons = document.querySelectorAll("button");
-
 let currentMode = '';
-/*
-blackBtn.addEventListener('click', () => {
-    buttonPressed('b');
-});
-rainbowBtn.addEventListener('click', () => {
-    buttonPressed('r');
-});
-eraserBtn.addEventListener('click', () => {
-    buttonPressed('e');
-});
-clearBtn.addEventListener('click', () => {
-    buttonPressed('c');
-});
-resizeButton.addEventListener('click', () => {
-    buttonPressed('re');
-});*/
 
 buttons.forEach(button => {
     button.addEventListener('click', () => {
-        let firstLetter = '';
-        if (button.id == 'resizeButton') {
-             firstLetter = 're';
-             clear(button.id);
-            }
-            if (button.id === 'clearButton'){
-                clear(button.id);            
-        }
-        else{
-            firstLetter = button.id.charAt(0);
-        }
-        buttonPressed(firstLetter);
+        buttonPressed(button.id);
     });
 });
 
-
-
 function removeButton(button) {
-    switch (button) {
-        case 'b':
-            rainbowBtn.classList.remove('press');
-            eraserBtn.classList.remove('press');
-            clearBtn.classList.remove('press');
-            resizeBtn.classList.remove('press');
-            break;
-        case 'r':
-            blackBtn.classList.remove('press');
-            eraserBtn.classList.remove('press');
-            clearBtn.classList.remove('press');
-            resizeBtn.classList.remove('press');
-            break;
-        case 'e':
-            blackBtn.classList.remove('press');
-            rainbowBtn.classList.remove('press');
-            clearBtn.classList.remove('press');
-            resizeBtn.classList.remove('press');
-            break;
-        case 'c':
-            blackBtn.classList.remove('press');
-            rainbowBtn.classList.remove('press');
-            eraserBtn.classList.remove('press');
-            resizeBtn.classList.remove('press');
-            break;
-        case 're':
-            blackBtn.classList.remove('press');
-            rainbowBtn.classList.remove('press');
-            eraserBtn.classList.remove('press');
-            clearBtn.classList.remove('press');
+
+    blackBtn.classList.remove('press');
+    rainbowBtn.classList.remove('press');
+    eraserBtn.classList.remove('press');
+    clearBtn.classList.remove('press');
+    resizeBtn.classList.remove('press');
+    
+    if (button === 'black'){
+        blackBtn.classList.add('press');
     }
+    if (button === 'rainbow'){
+        rainbowBtn.classList.add('press');
+    }
+    if (button === 'eraser'){
+        eraserBtn.classList.add('press');
+    }
+    if (button === 'clear'){
+        clearBtn.classList.add('press');
+    }
+    if (button === 'resize'){
+        resizeBtn.classList.add('press');
+    }   
 }
 
 function buttonPressed(button) {
-    switch (button) {
-        case 'b':
-            removeButton('b');
-            black();
-            break;
-        case 'r':
-            removeButton('r');
-            rainbow();
-            break;
-        case 'e':
-            removeButton('e');
-            eraser();
-            break;
-        case 'c':
-            removeButton('c');
-            clear();
-            break;
-        case 're':
-            removeButton('re');
-            resize();
-            break;
-    }
+    removeButton(button);
+    currentMode = button;
 }
-
-function black() {
-    blackBtn.classList.add('press');
-    currentMode = 'black';
-}
-function rainbow() {
-    rainbowBtn.classList.add('press');
-    currentMode = 'rainbow';
-}
-function eraser() {
-    eraserBtn.classList.add('press');
-    currentMode = 'eraser';
-}
-function clear() {
-    clearBtn.classList.add('press');    
-}
-function resize() {
-    resizeBtn.classList.add('press');
-    //let answer = prompt('enter grid size');
-}
-
 let gridSize = 16;
 let pixel = '';
 const drawGrid = (screenSize) => {
@@ -130,8 +50,7 @@ const drawGrid = (screenSize) => {
         pixel.classList.add('squares');//squares
         //pixel.style.backgroundColor = 'white';
         grid.appendChild(pixel);
-    }
-   
+    }  
     grid.style.gridTemplateColumns = `repeat(${screenSize}, auto)`;
     grid.style.gridTemplateRows = `repeat(${screenSize}, auto)`;
 }//end of drawGrid()
@@ -161,7 +80,6 @@ const active = () =>{
                 case 'eraser':
                     e.target.style.backgroundColor = 'rgb(255,255,255)';
                     break;
-                
             }
                })
     })
