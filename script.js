@@ -4,8 +4,10 @@ const eraserBtn = document.querySelector('#eraserButton');
 const clearBtn = document.querySelector('#clearButton');
 const resizeBtn = document.querySelector('#resizeButton');
 const grid = document.querySelector('.grid');
-let currentMode = '';
+const buttons = document.querySelectorAll("button");
 
+let currentMode = '';
+/*
 blackBtn.addEventListener('click', () => {
     buttonPressed('b');
 });
@@ -20,7 +22,26 @@ clearBtn.addEventListener('click', () => {
 });
 resizeButton.addEventListener('click', () => {
     buttonPressed('re');
+});*/
+
+buttons.forEach(button => {
+    button.addEventListener('click', () => {
+        let firstLetter = '';
+        if (button.id == 'resizeButton') {
+             firstLetter = 're';
+             clear(button.id);
+            }
+            if (button.id === 'clearButton'){
+                clear(button.id);            
+        }
+        else{
+            firstLetter = button.id.charAt(0);
+        }
+        buttonPressed(firstLetter);
+    });
 });
+
+
 
 function removeButton(button) {
     switch (button) {
@@ -94,15 +115,14 @@ function eraser() {
     currentMode = 'eraser';
 }
 function clear() {
-    clearBtn.classList.add('press');
-    currentMode = 'clear';
+    clearBtn.classList.add('press');    
 }
 function resize() {
     resizeBtn.classList.add('press');
-    let answer = prompt('enter grid size');
+    //let answer = prompt('enter grid size');
 }
 
-let gridSize = 8;
+let gridSize = 16;
 let pixel = '';
 const drawGrid = (screenSize) => {
     for(i = 0; i < screenSize ** 2; i++){
@@ -141,9 +161,7 @@ const active = () =>{
                 case 'eraser':
                     e.target.style.backgroundColor = 'rgb(255,255,255)';
                     break;
-                case 'clear':
-                    e.target.style.backgroundColor = 'rgb(255,255,255)';
-                    break;
+                
             }
                })
     })
