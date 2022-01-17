@@ -2,7 +2,6 @@ const blackBtn = document.querySelector('#black');
 const rainbowBtn = document.querySelector('#rainbow');
 const eraserBtn = document.querySelector('#eraser');
 const clearBtn = document.querySelector('#clear');
-// const resizeBtn = document.querySelector('#resize');
 const grid = document.querySelector('.grid');
 const buttons = document.querySelectorAll("button");
 let currentMode = '';
@@ -19,7 +18,7 @@ function removeButton(button) {
     rainbowBtn.classList.remove('press');
     eraserBtn.classList.remove('press');
     clearBtn.classList.remove('press');
-    // resizeBtn.classList.remove('press');
+
 
     if (button === 'black') {
         blackBtn.classList.add('press');
@@ -33,9 +32,7 @@ function removeButton(button) {
     if (button === 'clear') {
         clearBtn.classList.add('press');
     }
-    // if (button === 'resize'){
-    //     resizeBtn.classList.add('press');
-    // }   
+
 }
 
 function buttonPressed(button) {
@@ -48,7 +45,6 @@ const drawGrid = (screenSize) => {
     for (i = 0; i < screenSize ** 2; i++) {
         pixel = document.createElement('div');
         pixel.classList.add('squares');//squares
-        //pixel.style.backgroundColor = 'white';
         grid.appendChild(pixel);
     }
     grid.style.gridTemplateColumns = `repeat(${screenSize}, auto)`;
@@ -70,7 +66,7 @@ const clearGrid = () => {
     pixels.forEach(pxl => {
         pxl.style.backgroundColor = 'rgb(255,255,255)';
     })
-    // grid.style.backgroundColor = 'rgb(255,255,255)';
+
 }
 
 let pixels = document.querySelectorAll('.squares');
